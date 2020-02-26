@@ -23,6 +23,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_sock:
 
 
         except KeyboardInterrupt as e: 
+            print(" ***** Client closed **** ", end="\n \n")
             break         
         
 

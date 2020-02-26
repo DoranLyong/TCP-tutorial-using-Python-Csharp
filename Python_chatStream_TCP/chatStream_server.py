@@ -7,8 +7,6 @@ from _thread import *
 
 
 
-
-
 class MyTCPHandler(socketserver.BaseRequestHandler):
     
     sendData = str() 
@@ -29,10 +27,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 print("Received from ", self.client_address[0], ":", self.client_address[1],">>> ", self.data.decode() )
 
 
-                MyTCPHandler.sendData = input("serverResponse:   ") 
-                
+                MyTCPHandler.sendData = input("serverResponse:   ")                 
                 self.request.sendall(MyTCPHandler.sendData.encode('utf-8')) 
-
                  
 
             except ConnectionResetError as e:
@@ -42,8 +38,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
 
 if __name__ == "__main__": 
-    
-
     
     # _Server on
     HOST, PORT = socket.gethostname(), 8080 
