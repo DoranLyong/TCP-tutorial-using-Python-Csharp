@@ -25,14 +25,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_sock:
     while True:
 
         try: 
+
+            # _client -> server 
             message = input("Enter Message: ") 
             client_sock.sendall(message.encode('utf-8'))
 
+            # _client <- server 
             recvData = client_sock.recv(1024)
             print("상대방: ",recvData.decode('utf-8'))
 
 
         except KeyboardInterrupt as e: 
+            print("***** Client closed *****", end="\n \n")
             break         
         
 

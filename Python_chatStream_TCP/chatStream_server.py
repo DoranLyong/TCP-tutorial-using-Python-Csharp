@@ -19,12 +19,15 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
         # 'self.request' is the TCP socket connected to the client   
-        print("A client connected by: ", self.client_address[0], ":", self.client_address[1] )
+        print("A client connected by: ", self.client_address[0], ":", self.client_address[1] )  # IP address : PORT 
 
         while True: 
             try:
-                #self.data = self.request.recv(1024).strip()  # .strip() is .decode()
+                
+                # _server <- client 
                 self.data = self.request.recv(1024)
+                #self.data = self.request.recv(1024).strip()  # .strip() is .decode()
+                   
                 
                 if not self.data: 
                     print("The client disconnected by: ", self.client_address[0], ":", self.client_address[1] )     
@@ -33,8 +36,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 print("Received from ", self.client_address[0], ":", self.client_address[1],">>> ", self.data.decode() )
 
 
-                MyTCPHandler.sendData = input("serverResponse:   ") 
-                
+                # _server -> client 
+                MyTCPHandler.sendData = input("serverResponse:   ")                 
                 self.request.sendall(MyTCPHandler.sendData.encode('utf-8')) 
 
                  

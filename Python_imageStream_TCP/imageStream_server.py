@@ -62,15 +62,17 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         while True:
             try:
+                # _server <- client 
                 self.data = self.request.recv(1024).strip()  
 
                 if not self.data: 
                     print("The client disconnected by: ", self.client_address[0], ":", self.client_address[1] )     
-                    break
-                
+                    break                
 
-                MyTCPHandler.stringData = MyTCPHandler.queue.get()                  
+                # _Get data from Queue stack 
+                MyTCPHandler.stringData = MyTCPHandler.queue.get()     
 
+                # _server -> client 
                 self.request.sendall(str(len(MyTCPHandler.stringData)).ljust(16).encode())
                 self.request.sendall(MyTCPHandler.stringData)             
 

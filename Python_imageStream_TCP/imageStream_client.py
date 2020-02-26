@@ -46,7 +46,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_sock:
             # _client -> server  
             client_sock.sendall(client_send.encode())  
 
-            # _ Server response 
+            # _client <- server  
             length = recvall( client_sock, 16)
             stringData = recvall(client_sock, int(length))
             data = np.frombuffer(stringData, dtype= 'uint8') 
@@ -59,6 +59,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_sock:
             cv2.waitKey(1)
 
         except KeyboardInterrupt as e: 
+            print("***** Client closed ***** ", end="\n \n")
             cv2.destroyAllWindows()
             break         
         
