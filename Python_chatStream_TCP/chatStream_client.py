@@ -1,7 +1,17 @@
+""" 
+Code author : DoranLyong 
+
+Reference : 
+* https://docs.python.org/3.7/library/socketserver.html
+
+
+Please, start 'chatStream_server.py' first. 
+"""
+
+
 import socket 
 import cv2 
 import numpy as np 
-
 
 
 HOST, PORT = socket.gethostname(), 8080
@@ -23,7 +33,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_sock:
 
 
         except KeyboardInterrupt as e: 
-            print(" ***** Client closed **** ", end="\n \n")
             break         
         
 

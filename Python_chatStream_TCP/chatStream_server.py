@@ -1,10 +1,16 @@
+""" 
+Code author : DoranLyong 
+
+Reference : 
+* https://docs.python.org/3.7/library/socketserver.html
+"""
+
 import socketserver
 import socket
 import cv2
 import numpy as np 
 from queue import Queue 
 from _thread import *
-
 
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
@@ -27,8 +33,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 print("Received from ", self.client_address[0], ":", self.client_address[1],">>> ", self.data.decode() )
 
 
-                MyTCPHandler.sendData = input("serverResponse:   ")                 
+                MyTCPHandler.sendData = input("serverResponse:   ") 
+                
                 self.request.sendall(MyTCPHandler.sendData.encode('utf-8')) 
+
                  
 
             except ConnectionResetError as e:
