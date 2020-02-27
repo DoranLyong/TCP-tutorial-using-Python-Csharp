@@ -38,7 +38,7 @@ namespace CSharp_client
                     stream.Write(buff, 0, buff.Length);   // Spend the stream 
 
                     // _client <- server 
-                    byte[] recvBuf = new byte[1024];  // 10 bit information
+                    byte[] recvBuf = new byte[1024];  // 1024 byte information
                     int nbytes = stream.Read(recvBuf, 0, recvBuf.Length);
                     string recvData = Encoding.ASCII.GetString(recvBuf, 0, nbytes);
                     Console.WriteLine($"Response: {recvData}");
