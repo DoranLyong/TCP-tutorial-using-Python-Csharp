@@ -4,11 +4,13 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Text;
 
+
 namespace CSharp_client
 {
     public class Client
     {
-        const int PORT = 8080;        
+        const int PORT = 8080;
+        
 
 
         static void Main(string[] args)
@@ -21,13 +23,14 @@ namespace CSharp_client
             // _Connect to server 
             TcpClient client_sock = new TcpClient(ipAddress.ToString(), PORT);
             Console.WriteLine("***** Client connected to the server *****");
-
+            
+            
             while (true)
             {
                 try
                 {
                     // _client -> server 
-                    Console.WriteLine("Enter Message: ");
+                    Console.Write("Enter Message: ");
                     string message = Console.ReadLine();
                     byte[] buff = Encoding.ASCII.GetBytes(message);
 
@@ -35,16 +38,20 @@ namespace CSharp_client
                     stream.Write(buff, 0, buff.Length);   // Spend the stream 
 
                     // _client <- server 
-                    byte[] recvBuf = new byte[1024];
+                    byte[] recvBuf = new byte[1024];  // 10 bit information
                     int nbytes = stream.Read(recvBuf, 0, recvBuf.Length);
                     string recvData = Encoding.ASCII.GetString(recvBuf, 0, nbytes);
                     Console.WriteLine($"Response: {recvData}");
-                    
+
+
+                    // KeyboardInterrupt by 'ctrl+C' and throw exception                                
+                
                 } 
-                catch (Exception e)
+                catch (ThreadInterruptedException e)
                 {                      
                     Console.WriteLine(e.ToString());
                     Console.WriteLine("***** Client closed *****");
+                   
                 }
             }
         }
