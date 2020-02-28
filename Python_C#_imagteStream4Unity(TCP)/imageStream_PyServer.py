@@ -63,7 +63,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         while True:
             try:
                 # _server <- client 
-                self.data = self.request.recv(1024).strip()  # 1024 byte 
+                self.data = self.request.recv(1024).strip()   # 1024 byte for header 
 
                 if not self.data: 
                     print("The client disconnected by: ", self.client_address[0], ":", self.client_address[1] )     
@@ -73,6 +73,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 MyTCPHandler.stringData = MyTCPHandler.queue.get()     
 
                 # _server -> client 
+                #print(str(len(MyTCPHandler.stringData)).ljust(16).encode())  # <str>.ljust(16) and encode <str> to <bytearray>
                 self.request.sendall(str(len(MyTCPHandler.stringData)).ljust(16).encode())
                 self.request.sendall(MyTCPHandler.stringData)             
 
