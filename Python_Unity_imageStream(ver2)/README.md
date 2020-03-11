@@ -15,7 +15,6 @@ You can control the spent image quality in python server code. <br/>
 * ``` 80 → 100 ``` makes images in 100% quality, but it can overflow the buffer size.
 
 ## Test 
-It's not perfect yet. <br/>
 
 <img src="./Python_unity.gif" width=650>
 
