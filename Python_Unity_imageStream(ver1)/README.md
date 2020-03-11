@@ -10,8 +10,12 @@ It's not perfect yet. <br/>
 
 <img src="./unity_problem.gif" width=650>
 
+<br/>
+
+This problem had been fixed in [second version](https://github.com/DoranLyong/TCP_tutorial/tree/master/Python_Unity_imageStream(ver2)). 
 
 ***
+
 
 ### Reference 
 * [Sample Code for Intel RealSense Python Wrapper, Github](https://github.com/IntelRealSense/librealsense/tree/master/wrappers/python/examples)
