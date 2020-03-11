@@ -7,7 +7,7 @@
 
 <br/>
 
-This project is fixed from [the first version](https://github.com/DoranLyong/TCP_tutorial/tree/master/Python_Unity_imageStream(ver1)). <br/>
+This project is fixed from [first version](https://github.com/DoranLyong/TCP_tutorial/tree/master/Python_Unity_imageStream(ver1)). <br/>
 * python server code had been fixed for TCP client in C#. 
 
 You can control the spent image quality in python server code. <br/>
