@@ -56,6 +56,7 @@ def D435(queue):
             
             
             depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.05), cv2.COLORMAP_BONE)
+            #depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.05), cv2.COLORMAP_JET)
             #depth_colormap  = cv2.bitwise_not(depth_colormap ) # reverse image
 
             #print("Depth map shape = ", depth_colormap.shape)   
