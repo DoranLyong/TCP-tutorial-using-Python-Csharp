@@ -7,13 +7,15 @@ Reference :
 * https://github.com/IntelRealSense/librealsense/tree/master/wrappers/python/examples
 * http://blog.cogitomethods.com/visual-analytics-using-opencv-and-realsense-camera/
 """
-import pyrealsense2 as d435
 import socketserver
 import socket
-import cv2 
-import numpy as np 
 from queue import Queue
 from _thread import *
+
+import cv2 
+import numpy as np 
+import pyrealsense2 as d435
+
 
 
 # _Set queue 
