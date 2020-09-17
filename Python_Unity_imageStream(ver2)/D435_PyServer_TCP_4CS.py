@@ -64,6 +64,26 @@ def D435(queue):
             #print("Depth map shape = ", depth_colormap.shape)   
 
 
+            """ Pixelate image 
+            (ref) https://stackoverflow.com/questions/55508615/how-to-pixelate-image-using-opencv-in-python
+            Applying for 
+                         * RGB 
+                         * Gray 
+            """
+            gray = cv2.cvtColor(color_image, cv2.COLOR_BGR2GRAY)
+
+            H, W = gray.shape 
+            pix_w, pix_h = (16, 16) # "pixelated"-size 
+                                    # 16 x 16 pixels 
+
+            temp = [color_image, gray]
+            out_temp = [cv2.resize(img, (pix_w, pix_h), interpolation=cv2.INTER_LINEAR)  for img in temp]  # downsample 
+            output = [cv2.resize(sample, (W, H), interpolation=cv2.INTER_NEAREST) for sample in out_temp]       # upsample 
+            output[1] = np.stack((output[1],)*3, axis=-1)   # gray with 3D channel 
+
+            # _End: Pixelate 
+
+
             # _Encoding 
             target_frame = depth_colormap
             
@@ -75,7 +95,6 @@ def D435(queue):
             #encode_param = [int(cv2.IMWRITE_WEBP_QUALITY),95]  # 0 ~ 100 quality 
 
 
-
             result, imgencode = cv2.imencode('.jpg', target_frame, encode_param)  # Encode numpy into '.jpg'
             data = np.array(imgencode)
 
@@ -85,14 +104,16 @@ def D435(queue):
 
 
             # __ Image show             
-            images = np.hstack((color_image, depth_colormap)) # stack both images horizontally             
+            images1 = np.hstack((color_image, depth_colormap)) # stack both images horizontally            
+            images2 = np.hstack((output[0], output[1])) 
+            images = np.vstack((images1, images2))
             
+
             cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
             cv2.imshow('RealSense', images)
             cv2.waitKey(1)        
 
         
-
     finally: 
         cv2.destroyAllWindows()
 
@@ -100,8 +121,6 @@ def D435(queue):
         pipeline.stop()
 
     
-
-
 
 
 
